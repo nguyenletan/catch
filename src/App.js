@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import './App.css'
+import logo from './assets/logo.svg'
+import ProductList from './components/products-list'
 
-function App() {
+const url = 'https://raw.githubusercontent.com/nguyenletan/movie-apollo/master/response.json';
+
+
+const App = () => {
+  const [products, fetchProducts] = useState([])
+  
+  async function fetchData () {
+    const response = await axios(url);
+    // let { data } = res.data;
+    console.log(response.data);
+    fetchProducts(response.data.results);
+  }
+  
+  useEffect(() => {
+    fetchData();
+  },[]);
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="app-header">
+        <img src={logo} className="app-logo" alt="logo"/>
       </header>
+      <div className="content">
+        <ProductList products={products}/>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
