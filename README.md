@@ -1,7 +1,14 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Demo link:
+[Demo](https://catch-demo.surge.sh).
 
+## Technical stacks:
+- Bootstrap Css
+- ReactJs
+-
+
+## Available Scripts
 In the project directory, you can run:
 
 ### `yarn start`

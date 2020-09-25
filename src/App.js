@@ -5,8 +5,7 @@ import './App.css'
 import logo from './assets/logo.svg'
 import ProductList from './components/products-list'
 
-const url = 'https://raw.githubusercontent.com/nguyenletan/movie-apollo/master/response.json'
-
+const url = process.env.REACT_APP_API_ENDPOINT
 
 const Header = styled.header`
   margin-bottom: 10px;
@@ -42,11 +41,8 @@ const App = () => {
   
   const fetchData = async () => {
     const response = await axios.get(url)
-    
-    console.log(response)
     setProducts(sort(response.data.results, sortingOption))
     setMetadata(response.data.metadata)
-    console.log(metadata)
   }
   
   useEffect(() => {

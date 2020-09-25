@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="JSX" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+    <option name="runUnderTerminal" value="true" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="true" />
+  </component>
+</project>

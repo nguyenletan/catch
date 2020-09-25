@@ -19,7 +19,7 @@ afterEach(() => {
 })
 
 it('renders with list of product', () => {
-  const mockObjects = [
+  const mockProducts = [
     {
       'id': 'f56cb6f2-a926-4ff4-80be-4518b0d1997d',
       'name': 'Havaianas Top Thongs -  Black',
@@ -53,17 +53,36 @@ it('renders with list of product', () => {
       'quantityAvailable': 14,
     }]
   
+  const mockMetadata = {
+    "query": "best sellers",
+    "total": 300,
+    "page": 2,
+    "pages": 10
+  };
+  
   act(() => {
-    render(<ProductsList products={mockObjects}/>, container)
+    render(<ProductsList products={mockProducts} metadata={mockMetadata}/>, container)
   })
   
   expect(
     container.querySelectorAll('li').length,
   ).toEqual(4)
   
+  expect(
+    container.querySelector('.page').textContent,
+  ).toEqual(`Page : ${mockMetadata.page} of ${mockMetadata.pages}`)
+  
+  expect(
+    container.querySelector('.total').textContent,
+  ).toEqual(`Total: ${mockMetadata.total}`)
+  
+  expect(
+    container.querySelector('h2').textContent,
+  ).toEqual(mockMetadata.query)
+  
 })
 
-it('renders with list of empty', () => {
+it('renders with empty list', () => {
   const mockObjects = []
   
   act(() => {

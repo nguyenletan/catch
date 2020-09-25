@@ -27,22 +27,19 @@ const Span = styled.span`
   text-align: center;
 `
 
-
-
-
 const ProductList = ({ metadata, products }) => {
   const cards = products.map(item => {
     return <ProductCard key={item.id} product={item}/>
   })
-
+  
   return (
     <>
-      <ProductListHead>
+      {metadata && (<ProductListHead>
         <H2>{metadata.query}</H2>
-        <Span>Total: {metadata.total}</Span>
-        <Span>Page : {metadata.page} of {metadata.pages}</Span>
-      </ProductListHead>
-      
+        <Span className="total">Total: {metadata.total}</Span>
+        <Span className="page">Page : {metadata.page} of {metadata.pages}</Span>
+      </ProductListHead>)
+      }
       <Ul className="product-list row justify-content-between">
         {cards}
       </Ul>

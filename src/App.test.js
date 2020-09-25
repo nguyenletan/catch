@@ -1,9 +1,9 @@
 import { wait } from '@testing-library/dom'
-import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
-import App from "./App";
-import mockedAxios from 'axios';
+import mockedAxios from 'axios'
+import React from 'react'
+import { render, unmountComponentAtNode } from 'react-dom'
+import { act } from 'react-dom/test-utils'
+import App from './App'
 
 let container = null
 beforeEach(() => {
@@ -20,7 +20,7 @@ afterEach(() => {
 })
 
 it('renders with 4 product cards (li)', async () => {
-  jest.mock('axios');
+  jest.mock('axios')
   const mockObjects = {
     data: {
       'metadata': {
@@ -65,12 +65,13 @@ it('renders with 4 product cards (li)', async () => {
     },
   }
   
-  mockedAxios.get.mockResolvedValueOnce(mockObjects);
+  mockedAxios.get.mockResolvedValueOnce(mockObjects)
   await act(async () => {
-    render(<App />, container);
-  });
+    render(<App/>, container)
+  })
   await wait(() => {
-    expect(container.querySelectorAll("li").length).toEqual(4);
-  });
+    expect(container.querySelectorAll('li').length).toEqual(4)
+  })
+  
 })
 
