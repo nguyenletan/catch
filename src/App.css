@@ -1,18 +1,17 @@
 .App {
   width: 1140px;
   margin: 0 auto;
+  max-width: 100%;
 }
 
 .app-logo {
   height: auto;
-  width: 150px;
+  width: 200px;
   pointer-events: none;
 }
 
 .app-header {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+
 }
 
 .App-link {

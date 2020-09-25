@@ -1,27 +1,22 @@
 import React from 'react'
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-const Li = styled.li`
+
+const ProductCardInner = styled.div`
   border: 1px solid #ddd;
-  width: 22%;
   text-align: center;
-  margin: 10px;
   min-height: 320px;
+  max-width: 280px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding-bottom: 10px;
+  margin: 0 auto 25px;
 `
 
 const ImgWrapper = styled.div`
   width: 100%;
   position: relative;
-`
-
-const Img = styled.img`
-  width: 100%;
-  height: auto;
-
 `
 
 const SoldOut = styled.span`
@@ -37,7 +32,7 @@ const SoldOut = styled.span`
   font-weight: bold;
 `
 
-const ProductDetail =  styled.div`
+const ProductDetail = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 5px;
@@ -63,20 +58,26 @@ const SalePrice = styled.span`
   font-weight: bold;
 `
 
-const ProductCard = ({product}) => {
-  console.log(product)
+const ProductCard = ({ product }) => {
+  //console.log(product)
   return product ? (
-    <Li className="product-card" id={product.id}>
-      <ImgWrapper>
-        <img src={product.imageUrl} alt={product.name} className="product-img"/>
-        {product.quantityAvailable > 0 && (<SoldOut>Sold Out</SoldOut>)}
-      </ImgWrapper>
-      <ProductDetail>
-        <ProductName>{product.name}</ProductName>
-        <RetailPrice >${product.retailPrice}</RetailPrice>
-        <SalePrice>${product.salePrice}</SalePrice>
-      </ProductDetail>
-    </Li>) : null
+    <li className="product-card col-lg-3 col-md-4 col-sm-6" id={product.id}>
+      <ProductCardInner>
+        <ImgWrapper>
+          <img src={product.imageUrl} alt={product.name}
+               className="product-img"/>
+          {product.quantityAvailable === 0 &&
+          (<SoldOut className="sold-out">Sold Out</SoldOut>)}
+        </ImgWrapper>
+        <ProductDetail>
+          <ProductName>{product.name}</ProductName>
+          <RetailPrice className="retail-price">${(product.retailPrice /
+            100).toFixed(2)}</RetailPrice>
+          <SalePrice className="sale-price">${(product.salePrice / 100).toFixed(
+            2)}</SalePrice>
+        </ProductDetail>
+      </ProductCardInner>
+    </li>) : null
 }
 
-export default ProductCard;
+export default ProductCard

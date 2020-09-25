@@ -1,34 +1,77 @@
-import * as axios from 'axios'
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import styled from 'styled-components'
 import './App.css'
 import logo from './assets/logo.svg'
 import ProductList from './components/products-list'
 
-const url = 'https://raw.githubusercontent.com/nguyenletan/movie-apollo/master/response.json';
+const url = 'https://raw.githubusercontent.com/nguyenletan/movie-apollo/master/response.json'
 
+
+const Header = styled.header`
+  margin-bottom: 10px;
+  margin-top: 10px;
+`
+
+const SortingOptions = styled.select`
+  float: right;
+  height: 40px;
+  border-radius: 8px;
+  margin-top: 48px;
+  padding-left: 5px;
+  padding-right: 5px;
+`
 
 const App = () => {
-  const [products, fetchProducts] = useState([])
+  const [products, setProducts] = useState([])
+  const [metadata, setMetadata] = useState({})
+  const [sortingOption, setSortingOption] = useState('desc')
   
-  async function fetchData () {
-    const response = await axios(url);
-    // let { data } = res.data;
-    console.log(response.data);
-    fetchProducts(response.data.results);
+  const sort = (products, sortingOption) => {
+    return [...products].sort((a, b) => {
+      let comparison = 0
+      if (a.salePrice > b.salePrice) {
+        comparison = 1
+      }
+      if (a.salePrice < b.salePrice) {
+        comparison = -1
+      }
+      return sortingOption === 'desc' ? comparison * -1 : comparison
+    })
+  }
+  
+  const fetchData = async () => {
+    const response = await axios.get(url)
+    
+    console.log(response)
+    setProducts(sort(response.data.results, sortingOption))
+    setMetadata(response.data.metadata)
+    console.log(metadata)
   }
   
   useEffect(() => {
-    fetchData();
-  },[]);
+    fetchData()
+  }, [])
+  
+  useEffect(() => {
+    setProducts([...sort(products, sortingOption)])
+  }, [sortingOption])
   
   return (
-    <div className="App">
-      <header className="app-header">
+    <div className="App container">
+      <Header>
         <img src={logo} className="app-logo" alt="logo"/>
-      </header>
-      <div className="content">
-        <ProductList products={products}/>
-      </div>
+        <SortingOptions onChange={e => {
+          setSortingOption(e.target.value)
+        }}>
+          <option value="desc">Highest Price</option>
+          <option value="incr">Lowest Price</option>
+        </SortingOptions>
+      </Header>
+      
+      <ProductList products={products} metadata={metadata}/>
+    
+    
     </div>
   )
 }
