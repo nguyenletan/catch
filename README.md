@@ -4,9 +4,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 [Demo](https://catch-demo.surge.sh).
 
 ## Technical stacks:
-- Bootstrap Css
+- Bootstrap Css for responsive UI
 - ReactJs
--
+- Axios for fetch api. IE 11 does not support Native Fetch API
+- Styled Component for CSS in JS
+- Jest and React Testing Library for unit testing
 
 ## Available Scripts
 In the project directory, you can run:
