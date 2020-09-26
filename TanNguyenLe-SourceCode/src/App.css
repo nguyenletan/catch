@@ -1,0 +1,19 @@
+.App {
+  width: 1140px;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.app-logo {
+  height: auto;
+  width: 200px;
+  pointer-events: none;
+}
+
+.app-header {
+
+}
+
+.App-link {
+  color: #61dafb;
+}

@@ -16,7 +16,6 @@ const ProductCardInner = styled.div`
 const ImgWrapper = styled.div`
   width: 100%;
   position: relative;
-  padding: 15px;
 `
 
 const SoldOut = styled.span`
