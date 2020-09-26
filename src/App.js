@@ -61,7 +61,7 @@ const App = () => {
           setSortingOption(e.target.value)
         }}>
           <option value="desc">Highest Price</option>
-          <option value="incr">Lowest Price</option>
+          <option value="asc">Lowest Price</option>
         </SortingOptions>
       </Header>
       

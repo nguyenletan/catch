@@ -19,7 +19,7 @@ afterEach(() => {
   container = null
 })
 
-it('renders with 4 product cards (li)', async () => {
+it('renders app properly', async () => {
   jest.mock('axios')
   const mockObjects = {
     data: {
@@ -69,9 +69,18 @@ it('renders with 4 product cards (li)', async () => {
   await act(async () => {
     render(<App/>, container)
   })
+  
   await wait(() => {
     expect(container.querySelectorAll('li').length).toEqual(4)
+    
+    expect(container.querySelector('header img')).not.toBeNull()
+    expect(container.querySelector('header select')).not.toBeNull()
+    
+    expect(container.querySelectorAll('header select option')).toHaveLength(2)
+    expect(container.querySelectorAll('header select option')[0].textContent)
+    .toBe('Highest Price')
+    expect(container.querySelectorAll('header select option')[1].textContent)
+    .toBe('Lowest Price')
   })
-  
 })
 

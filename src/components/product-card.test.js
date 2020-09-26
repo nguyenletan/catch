@@ -32,7 +32,7 @@ it('renders with product detail', () => {
   })
   
   expect(
-    container.querySelector('h4').textContent,
+    container.querySelector('h3').textContent,
   ).toEqual('Havaianas Top Thongs -  Black')
   
   expect(

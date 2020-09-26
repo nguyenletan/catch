@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-
 const ProductCardInner = styled.div`
   border: 1px solid #ddd;
   text-align: center;
@@ -41,11 +40,12 @@ const ProductDetail = styled.div`
   height: 156px;
 `
 
-const ProductName = styled.h4`
+const ProductName = styled.h3`
   font-size: 1rem;
   margin-top: 10px;
   margin-bottom: 5px;
   min-height: 4em;
+  font-weight: bold;
 `
 
 const RetailPrice = styled.span`
@@ -71,8 +71,9 @@ const ProductCard = ({ product }) => {
         </ImgWrapper>
         <ProductDetail>
           <ProductName>{product.name}</ProductName>
-          <RetailPrice className="retail-price">${(product.retailPrice /
-            100).toFixed(2)}</RetailPrice>
+          {product.retailPrice > 0 &&
+          (<RetailPrice className="retail-price">${(product.retailPrice /
+            100).toFixed(2)}</RetailPrice>)}
           <SalePrice className="sale-price">${(product.salePrice / 100).toFixed(
             2)}</SalePrice>
         </ProductDetail>
